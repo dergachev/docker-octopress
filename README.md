@@ -1,64 +1,62 @@
-Octopress framework Dockerfile
+Octopress workflow with Docker
 ==============================
 
-Dockerfile to build an Octopress image of the [Octopress framework](https://github.com/imathis/octopress) for [Jekyll](https://github.com/mojombo/jekyll)
+Run [Octopress](https://github.com/imathis/octopress) via Docker.
 
-## Deploy from index.docker.io
+## Installation
 
-    docker pull wujtruj/octopress
+First, fork this repo. It's going to contain your site source code (markdown).
+Then clone it (replacing **dergachev** with your github username):
 
-### Interactive shell 
+    git clone git@github.com:dergachev/docker-octopress
 
-Run fresh instance of an Octopress:
+Now either download the ready-made Docker image:
 
-    docker run -i -t -entrypoint="/bin/bash" wujtruj/octopress
+    docker pull dergachev/octopress
 
-Inside docker:
+Alternatively, build the image manually from the included Dockerfile:
+
+    make docker-build
+
+Now clone the repository you will deploy the generated HTML to into `./deploy_repo`:
+
+    make deploy_repo
+
+Then maybe edit `./config/_config.yml` unless you want your site called "Alex Dergachev's Blog"
+
+## Usage
+
+Create a new post:
+
+    make new_post
+
+Generate HTML site (from `./posts` into `./public`):
+
+   make generate 
+
+Automatically regenerate site as you edit files in `./posts`, and serve on
+[http://localhost:4000](http://localhost:4000):
+
+    make preview
+
+Commit and push the HTML into your github deploy repo:
+
+    make deploy
+
+See a list of available rake tasks defined by Octopress:
+
+    make rake
+
+Run an abritrary rake task:
+
+    make rake-new_page   # runs 'rake new_page' inside docker
     
-    cd /srv/octopress-master
-    rake preview
+## Debugging
 
-Check port and navigate to `http://localhost:port`
+Something funky? Or want to do something custom that my Makefile doesn't support? 
+Start a bash shell within docker:
 
-### Permanent config
+    make shell
 
-To run an instance with persistant config and posts, You have to map local directory with Octopress files:
-
-    git clone https://github.com/wujtruj/docker-octopress
-    cd docker-octopress
-    docker run -d -v `pwd`/posts:/srv/octopress-master/source/_posts -v `pwd`/config:/srv/octopress-master/config -p 80:4000 wujtruj/octopress
-
-Edit `config/` files to meet Your needs  
-Then navigate to `http://localhost`
-
-## Roll your own image
-
-To build your own image, run `sudo docker build -t <image_name> .` in the directory with the `Dockerfile` after cloning this.
-
-## Blogging with Octopress
-
-2 ways of doing this
-
-### Automatic (if You are in an interactive shell)
-
-    rake new_post["Post title"]
-
-Then You edit it in `posts` directory.
-
-### Manual
-
-In `posts` directory create `YYYY-MM-DD-title.markdown` file:
-    
-    ---
-    layout: post
-    title: "Hello World"
-    date: 2013-11-01 11:11
-    comments: true
-    categories: General
-    ---
-    **Hello World!**
-    This an example post with very short content
-
-## License
-
-[MIT License](http://opensource.org/licenses/mit-license.html)
+Don't forget that all the directories are mounted, so don't delete anything by
+accident. 
