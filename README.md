@@ -7,8 +7,8 @@ run it under Docker.
 
 ## Installation
 
-First, fork this repo. It's going to contain your site source code (markdown).
-Then clone it onto your docker host:
+First, fork this repo, as it's going to contain your site source code
+(markdown), and clone it on your docker host:
 
     git clone git@github.com:USERNAME/docker-octopress
     cd docker-octopress
@@ -32,10 +32,16 @@ Now clone the repository you will deploy the generated HTML to into
 
     make deploy-repo
 
-Then maybe edit the configuration settings in `config/_config.yml` unless you
-want your site called "Alex Dergachev's Blog".
+Then update the following settings inside `config/_config.yml`:
 
-Afterwards, you're ready to use octopress to build and deploy the HTML!
+    url: http://dergachev.github.io
+    title: Alex Dergachev's Blog
+    subtitle: Buffalo buffalo Buffalo buffalo buffalo buffalo Buffalo buffalo
+    author: Alex Dergachev
+    simple_search: http://google.com/search
+    description: Site description goes here.
+
+Afterwards, you're ready to use Octopress to build and deploy the HTML!
 
 ## Usage
 
