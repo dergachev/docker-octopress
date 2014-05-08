@@ -1,7 +1,9 @@
 Octopress workflow with Docker
 ==============================
 
-Run [Octopress](https://github.com/imathis/octopress) via Docker.
+Want to try [Octopress](https://github.com/imathis/octopress) but don't feel like installing
+all the dependencies on your machine? This repo provides you with instructions and workflow to
+run it under Docker.
 
 ## Installation
 
@@ -21,8 +23,10 @@ Alternatively, build the image manually from the included Dockerfile:
 This workflow assumes you'll be deploying (pushing) the generated HTML into
 `git@github.com:YOURUSERNAME`. If you're planning to deploy the generated HTML
 into a repository on github, create one now.  Mine is
-[http://dergachev.github.io/](http://dergachev.github.io). The source for it is
-[https://Now clone the repository you will deploy the generated HTML to into
+[http://dergachev.github.io/](http://dergachev.github.io), with the source at
+[https://github.com/dergachev/dergachev.github.io](https://github.com/dergachev/dergachev.github.io).
+
+Now clone the repository you will deploy the generated HTML to into
 `./deploy_repo`:
 
     make deploy-repo
