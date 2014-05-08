@@ -8,9 +8,10 @@ run it under Docker.
 ## Installation
 
 First, fork this repo. It's going to contain your site source code (markdown).
-Then clone it (replacing **dergachev** with your github username):
+Then clone it onto your docker host:
 
     git clone git@github.com:USERNAME/docker-octopress
+    cd docker-octopress
 
 Now either download the ready-made Docker image (assuming I've pushed it and it's up-to-date):
 
