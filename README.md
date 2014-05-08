@@ -21,17 +21,6 @@ Alternatively, build the image manually from the included Dockerfile:
 
     make docker-build
 
-This workflow assumes you'll be deploying (pushing) the generated HTML into
-`git@github.com:USERNAME`. If you're planning to deploy the generated HTML
-into a repository on github, create one now.  Mine is
-[http://dergachev.github.io/](http://dergachev.github.io), with the source at
-[https://github.com/dergachev/dergachev.github.io](https://github.com/dergachev/dergachev.github.io).
-
-Now clone the repository you will deploy the generated HTML to into
-`./deploy_repo`:
-
-    make deploy-repo
-
 Then update the following settings inside `config/_config.yml`:
 
     url: http://dergachev.github.io
@@ -93,17 +82,29 @@ docker VM's IP address instead of localhost, or setup port forwarding.
 
 ## Deploying to GitHub Pages
 
-TODO: make generate
+Once you're happy with the previewed HTML, the following will commit and push it 
+to your GitHub Pages repository.
 
-Once you're happy with the generated HTML, the following will commit and push it 
-to the github pages repository you cloned in `./deploy_repo`:
-
-    make deploy
+This workflow assumes you'll be deploying (pushing) the generated HTML into
+`git@github.com:USERNAME`. If you're planning to deploy the generated HTML
+into a repository on github, create one now.  Mine is
+[http://dergachev.github.io/](http://dergachev.github.io), with the source at
+[https://github.com/dergachev/dergachev.github.io](https://github.com/dergachev/dergachev.github.io).
 
 Don't forget that if your repository was cloned using `git@github.com:USERNAME/USERNAME.github.io`, 
 you'll need SSH agent to be running on your docker host.  Otherwise, you can
 interactively type your github credentials each time you deploy, by using the
 HTTPS form of the github URL: `https://github.com/USERNAME/USERNAME.github.io`.
+
+You'll need to clone the GitHub Pages that will contain the generated HTML to
+`./deploy_repo`, which can be done as follows:
+
+    make deploy-repo
+
+Now you're ready to deploy! The following command re-generates the HTML into `./public`,
+copies it to `./deploy_repo`, then commits and pushes the changes:
+
+    make gen_deploy
 
 Afterwards, your HTML will be hosted via GitHub Pages at
 [http://USERNAME.github.io](http://USERNAME.github.io).

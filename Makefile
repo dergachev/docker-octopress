@@ -13,6 +13,7 @@ rake-%:
 preview: rake-preview
 generate: rake-generate
 deploy: rake-deploy
+gen_deploy: rake-gen_deploy
 
 new_post: rake-new_post
 	# editing the latest created file in VIM
@@ -26,6 +27,7 @@ deploy_repo_url = git@github.com:dergachev/dergachev.github.io.git
 git_email = $(shell git config --get user.email)
 git_name = $(shell git config --get user.name)
 deploy-repo:
+	rm -Rf deploy_repo/
 	@read -p "Enter github deploy URL [$(deploy_repo_url)]: " url; \
 		git clone "$${url:-$(deploy_repo_url)}" deploy_repo
 	@cd deploy_repo; \
