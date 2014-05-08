@@ -41,7 +41,7 @@ Then update the following settings inside `config/_config.yml`:
     simple_search: http://google.com/search
     description: Site description goes here.
 
-Afterwards, you're ready to use Octopress to build and deploy the HTML!
+Now, you're ready to use Octopress to build and deploy the HTML!
 
 ## Usage
 
@@ -76,17 +76,21 @@ inside `./public/` as follows:
 
     make generate 
 
-That was a one-shot conversion. For development purposes, you'll want to have
-octopress automatically regenerate the HTML as you edit the Markdown files in
-`./posts`, and serve the HTML on [http://localhost:4000](http://localhost:4000)
-for you to preview. To do this:
+That was a one-shot conversion. But during development, you'll want to have
+Octopress automatically regenerate the HTML, and preview the results locally.
+The following command automatically watches for changes to your source files,
+re-runs `make generate`, and spins up a local webserver so that you can easily
+preview the resulting HTML:
 
     make preview
 
-Note that this URL will only work from the docker host; if you're running
-docker inside a Virtualbox VM, you'll need to forward 4000 to your machine.
+While this is running, you can visit [http://localhost:4000](http://localhost:4000) to
+see your site. If you're not running docker locally but in a VM, be sure to use your
+docker VMs IP address instead of localhost, or setup port forwarding.
 
 ## Deploying to GitHub Pages
+
+TODO: make generate
 
 Once you're happy with the generated HTML, the following will commit and push it 
 to the github pages repository you cloned in `./deploy_repo`:
@@ -100,6 +104,9 @@ HTTPS form of the github URL: `https://github.com/USERNAME/USERNAME.github.io`.
 
 Afterwards, your HTML will be hosted via GitHub Pages at
 [http://USERNAME.github.io](http://USERNAME.github.io).
+
+Note that GitHub Pages can take up to 10 minutes to start serving the HTML
+after the push.
 
 Don't forget that your source markdown still needs to be committed and pushed;
 now's a great time to do this to avoid future data loss.
