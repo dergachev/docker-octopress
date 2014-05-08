@@ -74,16 +74,18 @@ Some more text
 * List 2 with a link to [github.com/dergachev/docker-octopress](https://github.com/dergachev/docker-octopress/)
 ```
 
-Once the new file is created inside `posts/`, you can generate the HTML website
-inside `./public/` as follows:
+Now you can generate the HTML and associated files for your website, which will
+be written to `./public/`:
 
     make generate 
 
-That was a one-shot conversion. But during development, you'll want to have
-Octopress automatically regenerate the HTML, and preview the results locally.
-The following command automatically watches for changes to your source files,
-re-runs `make generate`, and spins up a local webserver so that you can easily
-preview the resulting HTML:
+After running this conversion, you can theoretically deploy the site. But not
+so fast!
+
+Realistically, you'll want to have Octopress automatically regenerate the
+HTML, and preview the results locally.  The following command automatically
+watches for changes to your source files, re-runs `make generate`, and spins up
+a local webserver so that you can easily preview the resulting HTML:
 
     make preview
 
