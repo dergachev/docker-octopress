@@ -10,7 +10,7 @@ run it under Docker.
 First, fork this repo. It's going to contain your site source code (markdown).
 Then clone it (replacing **dergachev** with your github username):
 
-    git clone git@github.com:dergachev/docker-octopress
+    git clone git@github.com:USERNAME/docker-octopress
 
 Now either download the ready-made Docker image (assuming I've pushed it and it's up-to-date):
 
@@ -21,7 +21,7 @@ Alternatively, build the image manually from the included Dockerfile:
     make docker-build
 
 This workflow assumes you'll be deploying (pushing) the generated HTML into
-`git@github.com:YOURUSERNAME`. If you're planning to deploy the generated HTML
+`git@github.com:USERNAME`. If you're planning to deploy the generated HTML
 into a repository on github, create one now.  Mine is
 [http://dergachev.github.io/](http://dergachev.github.io), with the source at
 [https://github.com/dergachev/dergachev.github.io](https://github.com/dergachev/dergachev.github.io).
