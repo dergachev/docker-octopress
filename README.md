@@ -54,23 +54,25 @@ Vim for you to edit.
 
 Populate the markdown file with something like the following:
 
-    ---
-    layout: post
-    title: "Hello World!"
-    date: 2014-05-07 21:14
-    comments: true
-    categories: docker
-    ---
+```markdown
+---
+layout: post
+title: "Hello World!"
+date: 2014-05-07 21:14
+comments: true
+categories: docker
+---
 
-    Just getting started with Octopress, and of course I couldn't do anything
-    without my two favorite files: a Dockerfile and a Makefile.
+Just getting started with Octopress, and of course I couldn't do anything
+without my two favorite files: a Dockerfile and a Makefile.
 
-    ## Heading 2
+## Heading 2
 
-    Some more text
+Some more text
 
-    * List 1
-    * List 2 with a link to [github.com/dergachev/docker-octopress](https://github.com/dergachev/docker-octopress/)
+* List 1
+* List 2 with a link to [github.com/dergachev/docker-octopress](https://github.com/dergachev/docker-octopress/)
+```
 
 Once the new file is created inside `posts/`, you can generate the HTML website
 inside `./public/` as follows:
