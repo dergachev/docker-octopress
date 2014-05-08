@@ -19,10 +19,11 @@ Alternatively, build the image manually from the included Dockerfile:
     make docker-build
 
 This workflow assumes you'll be deploying (pushing) the generated HTML into
-`git@github.com:YOURUSERNAME
-If you're planning to deploy the generated HTML into a repository on github, create one now. 
-Mine is [http://dergachev.github.io/](http://dergachev.github.io). The source for it is
-[https://Now clone the repository you will deploy the generated HTML to into `./deploy_repo`:
+`git@github.com:YOURUSERNAME`. If you're planning to deploy the generated HTML
+into a repository on github, create one now.  Mine is
+[http://dergachev.github.io/](http://dergachev.github.io). The source for it is
+[https://Now clone the repository you will deploy the generated HTML to into
+`./deploy_repo`:
 
     make deploy-repo
 
@@ -77,7 +78,7 @@ docker inside a Virtualbox VM, you'll need to forward 4000 to your machine.
 ## Deploying to GitHub Pages
 
 Once you're happy with the generated HTML, the following will commit and push it 
-to the github pages repository you cloned in `./deploy\_repo`:
+to the github pages repository you cloned in `./deploy_repo`:
 
     make deploy
 
