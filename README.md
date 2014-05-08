@@ -80,18 +80,16 @@ be written to `./public/`:
     make generate 
 
 After running this conversion, you can theoretically deploy the site. But not
-so fast!
+so fast! Realistically, you'll want to preview the resulting HTML locally first.
 
-Realistically, you'll want to have Octopress automatically regenerate the
-HTML, and preview the results locally.  The following command automatically
-watches for changes to your source files, re-runs `make generate`, and spins up
-a local webserver so that you can easily preview the resulting HTML:
+The following command spins up a local webserver, while automatically regenerating
+the HTML whenever the source markdown files change:
 
     make preview
 
-While this is running, you can visit [http://localhost:4000](http://localhost:4000) to
-see your site. If you're not running docker locally but in a VM, be sure to use your
-docker VMs IP address instead of localhost, or setup port forwarding.
+While it's running, visit [http://localhost:4000](http://localhost:4000) to
+preview your site. If you're not running docker locally but in a VM, be sure to use your
+docker VM's IP address instead of localhost, or setup port forwarding.
 
 ## Deploying to GitHub Pages
 
