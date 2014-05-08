@@ -1,5 +1,5 @@
-Dock Oc - Octopress workflow with Docker
-========================================
+dock-oc
+=======
 
 <table><tr>
 <td>Want to try <a href="https://github.com/imathis/octopress">Octopress</a> but don't feel like installing
