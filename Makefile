@@ -44,7 +44,7 @@ shell:
 	$(MAKE) -s docker-run cmd=/bin/bash
 
 docker-build:
-	docker build -t dergachev/octopress .
+	docker build -t dergachev/octopress docker/
 
 prepare: deploy_repo
 	mkdir -p posts config public
