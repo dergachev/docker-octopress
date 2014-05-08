@@ -10,7 +10,7 @@ Then clone it (replacing **dergachev** with your github username):
 
     git clone git@github.com:dergachev/docker-octopress
 
-Now either download the ready-made Docker image:
+Now either download the ready-made Docker image (assuming I've pushed it and it's up-to-date):
 
     docker pull dergachev/octopress
 
@@ -18,30 +18,83 @@ Alternatively, build the image manually from the included Dockerfile:
 
     make docker-build
 
-Now clone the repository you will deploy the generated HTML to into `./deploy_repo`:
+This workflow assumes you'll be deploying (pushing) the generated HTML into
+`git@github.com:YOURUSERNAME
+If you're planning to deploy the generated HTML into a repository on github, create one now. 
+Mine is [http://dergachev.github.io/](http://dergachev.github.io). The source for it is
+[https://Now clone the repository you will deploy the generated HTML to into `./deploy_repo`:
 
-    make deploy_repo
+    make deploy-repo
 
-Then maybe edit `./config/_config.yml` unless you want your site called "Alex Dergachev's Blog"
+Then maybe edit the configuration settings in `config/_config.yml` unless you
+want your site called "Alex Dergachev's Blog".
+
+Afterwards, you're ready to use octopress to build and deploy the HTML!
 
 ## Usage
 
-Create a new post:
+First, create a new post inside `./posts`:
 
     make new_post
 
-Generate HTML site (from `./posts` into `./public`):
+That will generate `posts/2014-05-07-your-post-title.markdown` and opens it in
+VIM for you to edit.  Populate the markdown file with something like the
+following:
 
-   make generate 
+    ---
+    layout: post
+    title: "Hello World!"
+    date: 2014-05-07 21:14
+    comments: true
+    categories: docker
+    ---
 
-Automatically regenerate site as you edit files in `./posts`, and serve on
-[http://localhost:4000](http://localhost:4000):
+    Just getting started with Octopress, and of course I couldn't do anything
+    without my two favorite files: a Dockerfile and a Makefile.
+
+    ## Heading 2
+
+    Some more text
+
+    * List 1
+    * List 2 with a link to [github.com/dergachev/docker-octopress](https://github.com/dergachev/docker-octopress/)
+
+Once the new file is created inside `posts/`, you can generate the HTML website
+inside `./public/` as follows:
+
+    make generate 
+
+That was a one-shot conversion. For development purposes, you'll want to have
+octopress automatically regenerate the HTML as you edit the Markdown files in
+`./posts`, and serve the HTML on [http://localhost:4000](http://localhost:4000)
+for you to preview. To do this:
 
     make preview
 
-Commit and push the HTML into your github deploy repo:
+Note that this URL will only work from the docker host; if you're running
+docker inside a Virtualbox VM, you'll need to forward 4000 to your machine.
+
+## Deploying to GitHub Pages
+
+Once you're happy with the generated HTML, the following will commit and push it 
+to the github pages repository you cloned in `./deploy\_repo`:
 
     make deploy
+
+Don't forget that if your repository was cloned using `git@github.com:USERNAME/USERNAME.github.io`, 
+you'll need SSH agent to be running on your docker host.  Otherwise, you can
+interactively type your github credentials each time you deploy, by using the
+HTTPS form of the github URL: `https://github.com/USERNAME/USERNAME.github.io`.
+
+Afterwards, your HTML will be hosted via GitHub Pages at
+[http://USERNAME.github.io](http://USERNAME.github.io).
+
+Don't forget that your source markdown still needs to be committed and pushed;
+now's a great time to do this to avoid future data loss.
+
+## Running other commands
+
+Would you like to run other Octopress commands? 
 
 See a list of available rake tasks defined by Octopress:
 
@@ -50,13 +103,11 @@ See a list of available rake tasks defined by Octopress:
 Run an abritrary rake task:
 
     make rake-new_page   # runs 'rake new_page' inside docker
-    
-## Debugging
 
 Something funky? Or want to do something custom that my Makefile doesn't support? 
-Start a bash shell within docker:
+Start a bash shell within the Docker container:
 
     make shell
 
-Don't forget that all the directories are mounted, so don't delete anything by
-accident. 
+Don't forget that a number of directories are shared from your docker host, so
+be careful not to delete your uncommitted posts by accident.

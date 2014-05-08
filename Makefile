@@ -25,13 +25,13 @@ new_post: rake-new_post
 deploy_repo_url = git@github.com:dergachev/dergachev.github.io.git
 git_email = $(shell git config --get user.email)
 git_name = $(shell git config --get user.name)
-deploy_repo:
+deploy-repo:
 	@read -p "Enter github deploy URL [$(deploy_repo_url)]: " url; \
 		git clone "$${url:-$(deploy_repo_url)}" deploy_repo
 	@cd deploy_repo; \
-		read -p "Enter git email [$(git_email)]: " git_email; \
+		read -p "Enter git commit email [$(git_email)]: " git_email; \
 		git config --local user.email "$${git_email:-$(git_email)}"; \
-		read -p "Enter git name [$(git_name)]: " git_name; \
+		read -p "Enter git commit name [$(git_name)]: " git_name; \
 		git config --local user.name "$${git_name:-$(git_name)}";
 
 #=================================================================================
