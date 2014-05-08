@@ -45,13 +45,14 @@ Now, you're ready to use Octopress to build and deploy the HTML!
 
 ## Usage
 
-First, create a new post inside `./posts`:
+First, create a new post inside `./posts` as follows:
 
     make new_post
 
-That will generate `posts/2014-05-07-your-post-title.markdown` and opens it in
-VIM for you to edit.  Populate the markdown file with something like the
-following:
+This will generate `posts/2014-05-07-your-post-title.markdown` and open it in
+Vim for you to edit. 
+
+Populate the markdown file with something like the following:
 
     ---
     layout: post
