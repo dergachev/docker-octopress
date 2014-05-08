@@ -1,9 +1,12 @@
-Octopress workflow with Docker
-==============================
+Dock Oc - Octopress workflow with Docker
+========================================
 
-Want to try [Octopress](https://github.com/imathis/octopress) but don't feel like installing
+<table><tr>
+<td>Want to try <a href="https://github.com/imathis/octopress">Octopress</a> but don't feel like installing
 all the dependencies on your machine? This repo provides you with instructions and workflow to
-run it under Docker.
+run it under Docker.</td>
+<td><img align=right src="http://img1.wikia.nocookie.net/__cb20120422143510/avengersalliance/images/7/7d/Doctor_Octopus.png"></td>
+</tr></table>
 
 ## Installation
 
@@ -39,7 +42,7 @@ First, create a new post inside `./posts` as follows:
     make new_post
 
 This will generate `posts/2014-05-07-your-post-title.markdown` and open it in
-Vim for you to edit. 
+Vim for you to edit.
 
 Populate the markdown file with something like the following:
 
@@ -66,7 +69,7 @@ Some more text
 Now you can generate the HTML and associated files for your website, which will
 be written to `./public/`:
 
-    make generate 
+    make generate
 
 After running this conversion, you can theoretically deploy the site. But not
 so fast! Realistically, you'll want to preview the resulting HTML locally first.
@@ -82,26 +85,29 @@ docker VM's IP address instead of localhost, or setup port forwarding.
 
 ## Deploying to GitHub Pages
 
-Once you're happy with the previewed HTML, the following will commit and push it 
-to your GitHub Pages repository.
+Once you're happy with the previewed HTML, we're ready to it to push it to
+[GitHub Pages](https://pages.github.com/) repository.
 
-This workflow assumes you'll be deploying (pushing) the generated HTML into
-`git@github.com:USERNAME`. If you're planning to deploy the generated HTML
-into a repository on github, create one now.  Mine is
-[http://dergachev.github.io/](http://dergachev.github.io), with the source at
-[https://github.com/dergachev/dergachev.github.io](https://github.com/dergachev/dergachev.github.io).
+First, you'll need to create a repository named `USERNAME.github.io`. Any
+static HTML content pushed to the master branch of this repo will be
+automatically published by GitHub, at `http://USERNAME.github.io`. For example,
+my repository is at [https://github.com/dergachev/dergachev.github.io](https://github.com/dergachev/dergachev.github.io),
+and it's being publicly served at [http://dergachev.github.io/](http://dergachev.github.io).
 
-Don't forget that if your repository was cloned using `git@github.com:USERNAME/USERNAME.github.io`, 
-you'll need SSH agent to be running on your docker host.  Otherwise, you can
-interactively type your github credentials each time you deploy, by using the
-HTTPS form of the github URL: `https://github.com/USERNAME/USERNAME.github.io`.
+After you create the repo on GitHub, you'll need to get its clone URL. If you
+have SSH keys configured AND ssh-agent running on your docker host, you should
+use the SSH form of the URL (`git@github.com:USERNAME/USERNAME.github.io.git`).
+Otherwise you should use the HTTPS form
+(`http://github.com/USERNAME/USERNAME.github.io`), although this will require
+you type in your GitHub credentials each time you deploy changes.
 
-You'll need to clone the GitHub Pages that will contain the generated HTML to
-`./deploy_repo`, which can be done as follows:
+Once you have your repo URL figured out, the following command will clone it to
+`./deploy_repo`, and then update `./deploy_repo/.git/config` with your git name
+and email address, to allow for automatic commits from within Docker containers.
 
     make deploy-repo
 
-Now you're ready to deploy! The following command re-generates the HTML into `./public`,
+Now you're ready to deploy! The following command re-generates the HTML in `./public`,
 copies it to `./deploy_repo`, then commits and pushes the changes:
 
     make gen_deploy
@@ -112,12 +118,16 @@ Afterwards, your HTML will be hosted via GitHub Pages at
 Note that GitHub Pages can take up to 10 minutes to start serving the HTML
 after the push.
 
+Also note that Octopress' deploy task seems to choke if there's any hidden
+files (those whose names start with .) in `./posts`, such as your Vim swap
+files. So make sure Vim isn't open when you run this.
+
 Don't forget that your source markdown still needs to be committed and pushed;
 now's a great time to do this to avoid future data loss.
 
 ## Running other commands
 
-Would you like to run other Octopress commands? 
+Would you like to run other Octopress commands?
 
 See a list of available rake tasks defined by Octopress:
 
@@ -127,7 +137,7 @@ Run an abritrary rake task:
 
     make rake-new_page   # runs 'rake new_page' inside docker
 
-Something funky? Or want to do something custom that my Makefile doesn't support? 
+Something funky? Or want to do something custom that my Makefile doesn't support?
 Start a bash shell within the Docker container:
 
     make shell
